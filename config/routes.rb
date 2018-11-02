@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'heroes/index'
   resources :peleas
   resources :personas
   get 'ranking', to: "ranking#index"

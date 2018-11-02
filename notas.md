@@ -38,3 +38,8 @@ Necesitamos jobs en background para esto (uf!).
 
   1. Cada 10 minutos una pelea sí o sí
   2. Todos los días a las 0:00 resetear el ranking y estatus de los jugadores
+
+
+## Consumir servicios de MARVEL
+
+Usaremos faraday
