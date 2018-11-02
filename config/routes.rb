@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get 'heroes/index'
 
   # Peleas
-  get 'pelear', to: "peleas#index"
+  get 'peleas', to: "peleas#index"
   get 'peleas/pelear', to: "peleas#pelear"
 
   # Ranking
