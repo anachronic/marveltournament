@@ -1,6 +1,28 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Personas</h1>
+<h1>Peleadores <div class="float-right"><%= link_to 'Agregar Peleador', new_persona_path, :class=>"btn btn-primary" %></div></h1>
+
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Email</th>
+      <th scope="col">Está vivo</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @personas.each_with_index do |persona, index| %>
+      <tr>
+        <th scope="row"><%= index + 1 %></th>
+        <td><%= link_to persona.name, persona %></td>
+        <td><%= persona.email %></td>
+        <td><%= persona.alive %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
 <table>
   <thead>
@@ -25,7 +47,3 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Persona', new_persona_path %>
