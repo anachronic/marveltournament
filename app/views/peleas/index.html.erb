@@ -1,2 +1,5 @@
-<h1>Peleas#index</h1>
-<p>Find me in app/views/peleas/index.html.erb</p>
+<h1>Últimas peleas</h1>
+<ul>
+<% @peleas.each do |pelea| %>
+  <li><%= pelea[0] %> contra <%= pelea[1] %>: Ganador <%= pelea[2] %></li>
+<% end %>
