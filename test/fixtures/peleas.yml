@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  persona_id: 1
+  heroe_id: 1
+  timestamp: 2018-11-02 00:14:58
+
+two:
+  persona_id: 1
+  heroe_id: 1
+  timestamp: 2018-11-02 00:14:58

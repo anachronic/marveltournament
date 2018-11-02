@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class PeleasControllerTest < ActionDispatch::IntegrationTest
+class PeleaTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
