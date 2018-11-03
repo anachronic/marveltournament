@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   resources :personas
 
   # Heroes
-  get 'heroes/index'
+  get 'heroes', to: "heroes#index", as: :heroes_index
+  get 'heroes/:id', to: "heroes#show", as: :heroes_show
 
   # Peleas
   get 'peleas', to: "peleas#index"

@@ -1,6 +1,18 @@
 <h1>Héroes</h1>
 
-<ul>
-<% @heroes.each do |heroe| %>
-  <li><%= heroe['id'] %> - <%= heroe['name'] %></li>
+<% @heroes.each_slice(4) do |deck| %>
+  <div class="card-deck">
+    <% deck.each do |heroe| %>
+      <div class="card mb-3" style="width: 18rem;">
+        <img class="card-img-top"
+             src="<%= heroe["thumbnail"]["path"] + "/portrait_incredible." + heroe["thumbnail"]["extension"] %>"
+             alt="<%= heroe[:name] %>" />
+        <div class="card-body">
+          <h5 class="card-title"><%= heroe["name"] %></h5>
+          <p class="card-text"><%= heroe["description"] %></p>
+          <%= link_to "Ver detalles", heroes_show_path(heroe["id"]), :class=>"btn btn-primary" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
 <% end %>
