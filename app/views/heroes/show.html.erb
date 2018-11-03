@@ -1,2 +1,19 @@
-<h1>Un héroe</h1>
 <%= @id %>
+
+<div class="row">
+  <div class="col-lg-4">
+    <h1><%= @heroe["name"] %></h1>
+    <img src="<%= @heroe["thumbnail"]["path"] + "/portrait_incredible." + @heroe["thumbnail"]["extension"]%>"
+         alt="<%= @heroe["name"] %>">
+  </div>
+  <div class="col-lg-4">
+    <p class="lead">
+      <%= @heroe["description"] %>
+    </p>
+  </div>
+  <div class="col-lg-4">
+    <p>Comics aquí</p>
+    <p>Eventos aquí</p>
+    <p>Series aquí</p>
+  </div>
+</div>

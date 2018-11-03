@@ -5,7 +5,7 @@
     <% deck.each do |heroe| %>
       <div class="card mb-3" style="width: 18rem;">
         <img class="card-img-top"
-             src="<%= heroe["thumbnail"]["path"] + "/portrait_incredible." + heroe["thumbnail"]["extension"] %>"
+             src="<%= heroe["thumbnail"]["path"] + "/standard_amazing." + heroe["thumbnail"]["extension"] %>"
              alt="<%= heroe[:name] %>" />
         <div class="card-body">
           <h5 class="card-title"><%= heroe["name"] %></h5>
@@ -16,3 +16,45 @@
     <% end %>
   </div>
 <% end %>
+
+<div class="row">
+  <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+      <li class="page-item">
+        <%= link_to heroes_index_path(pagina: 1), "aria-label": "Primera página", :class=>"page-link" do %>
+          <span aria-hidden="true">&laquo;</span>
+          <span class="sr-only">Previous</span>
+        <% end %>
+      </li>
+      <li class="page-item<%= @pagina == 1 ? ' disabled' : '' %>">
+        <%= link_to "Anterior",
+                    heroes_index_path(pagina: @pagina - 1),
+                    :class=>"page-link",
+                    "tabindex": "-1" %>
+      </li>
+      <% @paginas_mostrables.each do |pag| %>
+        <% active = pag == @pagina ? " active" : "" %>
+        <li class="page-item<%= active %>">
+          <%= link_to pag,
+                      heroes_index_path(pagina: pag),
+                      :class=>"page-link",
+                      "tabindex": "-1" %>
+        </li>
+      <% end %>
+      <li class="page-item<%= @pagina == @paginas ? ' disabled' : '' %>">
+        <%= link_to "Siguiente",
+            heroes_index_path(pagina: @pagina + 1),
+            :class=>"page-link",
+            "tabindex": "-1" %>
+      </li>
+      <li class="page-item">
+        <%= link_to heroes_index_path(pagina: @paginas), 
+                    "aria-label": "Última página",
+                    :class=>"page-link" do %>
+          <span aria-hidden="true">&raquo;</span>
+          <span class="sr-only">Última página</span>
+        <% end %>
+      </li>
+    </ul>
+  </nav>
+</div>
