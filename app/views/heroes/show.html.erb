@@ -6,14 +6,70 @@
     <img src="<%= @heroe["thumbnail"]["path"] + "/portrait_incredible." + @heroe["thumbnail"]["extension"]%>"
          alt="<%= @heroe["name"] %>">
   </div>
-  <div class="col-lg-4">
-    <p class="lead">
-      <%= @heroe["description"] %>
-    </p>
-  </div>
-  <div class="col-lg-4">
-    <p>Comics aquí</p>
-    <p>Eventos aquí</p>
-    <p>Series aquí</p>
+  <div class="col-lg-8">
+    <nav>
+      <div class="nav nav-tabs nav-fill" id="navHeroe" role="tablist">
+        <a class="nav-item nav-link active" id="nav-descripcion-tab" data-toggle="tab" href="#nav-descripcion" role="tab" aria-controls="nav-descripcion" aria-selected="true">Descripción</a>
+        <a class="nav-item nav-link" id="nav-comics-tab" data-toggle="tab" href="#nav-comics" role="tab" aria-controls="nav-comics" aria-selected="false">Comics</a>
+        <a class="nav-item nav-link" id="nav-series-tab" data-toggle="tab" href="#nav-series" role="tab" aria-controls="nav-series" aria-selected="false">Series</a>
+        <a class="nav-item nav-link" id="nav-eventos-tab" data-toggle="tab" href="#nav-eventos" role="tab" aria-controls="nav-eventos" aria-selected="false">Eventos</a>
+      </div>
+    </nav>
+    <div class="tab-content pt-2" id="navHeroeContent">
+      <div class="tab-pane fade show active" id="nav-descripcion" role="tabpanel" aria-labelledby="nav-descripcion-tab">
+        <p class="lead">
+          <%= @heroe["description"] %>
+        </p>
+      </div>
+      <div class="tab-pane fade" id="nav-comics" role="tabpanel" aria-labelledby="nav-comics-tab">
+        <table class="table">
+          <thead>
+            <% @heroe["comics"]["items"].each do |comic| %>
+              <tr>
+                <td>
+                  <%= comic["name"] %>
+                </td>
+              </tr>
+            <% end.empty? and begin %>
+              <tr>
+                <td>No hay comics :(</td>
+              </tr>
+            <% end %>
+          </thead>
+        </table>
+      </div>
+      <div class="tab-pane fade" id="nav-series" role="tabpanel" aria-labelledby="nav-series-tab">
+        <table class="table">
+          <thead>
+            <% @heroe["series"]["items"].each do |serie| %>
+              <tr>
+                <td><%= serie["name"] %></td>
+              </tr>
+            <% end.empty? and begin %>
+              <tr>
+                <td>No hay series :(</td>
+              </tr>
+            <% end %>
+          </thead>
+        </table>
+      </div>
+      <div class="tab-pane fade" id="nav-eventos" role="tabpanel" aria-labelledby="nav-eventos-tab">
+        <table class="table">
+          <thead>
+            <% @heroe["events"]["items"].each do |evento| %>
+              <tr>
+                <td>
+                  <%= evento["name"] %>
+                </td>
+              </tr>
+            <% end.empty? and begin %>
+              <tr>
+                <td>No hay eventos :(</td>
+              </tr>
+            <% end %>
+          </thead>
+        </table>
+      </div>
+    </div> 
   </div>
 </div>
