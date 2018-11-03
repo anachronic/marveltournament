@@ -17,13 +17,12 @@
   </div>
 <% end %>
 
-<div class="row">
-  <nav aria-label="Page navigation example">
+  <nav aria-label="Ver más héroes">
     <ul class="pagination justify-content-center">
       <li class="page-item">
         <%= link_to heroes_index_path(pagina: 1), "aria-label": "Primera página", :class=>"page-link" do %>
           <span aria-hidden="true">&laquo;</span>
-          <span class="sr-only">Previous</span>
+          <span class="sr-only">Primera página</span>
         <% end %>
       </li>
       <li class="page-item<%= @pagina == 1 ? ' disabled' : '' %>">
@@ -43,9 +42,9 @@
       <% end %>
       <li class="page-item<%= @pagina == @paginas ? ' disabled' : '' %>">
         <%= link_to "Siguiente",
-            heroes_index_path(pagina: @pagina + 1),
-            :class=>"page-link",
-            "tabindex": "-1" %>
+                    heroes_index_path(pagina: @pagina + 1),
+                    :class=>"page-link",
+                    "tabindex": "-1" %>
       </li>
       <li class="page-item">
         <%= link_to heroes_index_path(pagina: @paginas), 
@@ -57,4 +56,3 @@
       </li>
     </ul>
   </nav>
-</div>
