@@ -22,6 +22,9 @@ class PeleasService
 
         if gana_heroe
           @@peleador.alive = false
+
+          # No nos olvidemos de resetear el peleador
+          reset_peleador
         else
           @@peleador.puntos += 1
         end
@@ -40,7 +43,7 @@ class PeleasService
 
       return false if vivos.count == 0
       total_personas = vivos.count
-      @@peleador = Persona.offset(rand(total_personas)).first
+      @@peleador = vivos.offset(rand(total_personas)).first
     end
   end
 end
