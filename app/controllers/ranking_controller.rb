@@ -1,5 +1,5 @@
 class RankingController < ApplicationController
   def index
-    @thekey = ENV['MARVEL_PUBLIC_KEY']
+    @personas = Persona.where("puntos > 0").order(puntos: :desc)
   end
 end
