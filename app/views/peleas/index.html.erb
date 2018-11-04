@@ -1,4 +1,9 @@
-<h1>Últimas peleas</h1>
+<h1>
+  Últimas peleas
+  <div class="float-right">
+    <%= link_to "Hacer una pelea", peleas_pelear_path, :class=>"btn btn-outline-primary" %>
+  </div>
+</h1>
 <ul>
 <% @peleas.each do |pelea| %>
   <li><%= pelea[0] %> contra <%= pelea[1] %>: Ganador <%= pelea[2] %></li>

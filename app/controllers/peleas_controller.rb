@@ -1,14 +1,13 @@
 class PeleasController < ApplicationController
   def pelear
-    # Tomamos una persona al azar
-    offset = rand(Persona.count)
-    @peleador = Persona.offset(offset).first
-
-    # Escoger un héroe (de marvel) al azar
-    @ganador = "Spiderman"
+    if (pelea = PeleasService.pelear)
+      @peleador = pelea[:persona]
+      @heroe = pelea[:heroe]
+      @registro = pelea[:registro]
+    end
   end
 
   def index
-    @peleas = [["Spiderman", "Pepe", "Spiderman"], ["Wolverine", "Pedro", "Pedro"]]
+    @peleas = Pelea.order(created_at: :desc).take(10)
   end
 end

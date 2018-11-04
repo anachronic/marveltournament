@@ -1,4 +1,10 @@
 <h1>Pelea entre Héroe y Jugador</h1>
-<p>Find me in app/views/peleas/index.html.erb</p>
-<%= @ganador %>
-<%= @persona.name %>
+
+<% gana_heroe = @registro.gana_heroe %>
+<div class="alert <%= @registro.gana_heroe ? 'alert-warning' : 'alert-success' %>" role="alert">
+  <% if gana_heroe %>
+    Vaya! parece que <%= @peleador.name %> ha perdido! :(
+  <% else %>
+    Bien hecho, <%= @peleador.name %>!, le has ganado a <%= @heroe["name"] %>!
+  <% end %>
+</div>

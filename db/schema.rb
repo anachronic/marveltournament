@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_04_000249) do
+ActiveRecord::Schema.define(version: 2018_11_04_062112) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,9 +18,9 @@ ActiveRecord::Schema.define(version: 2018_11_04_000249) do
   create_table "peleas", force: :cascade do |t|
     t.integer "persona_id"
     t.integer "heroe_id"
-    t.datetime "timestamp"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "gana_heroe", null: false
   end
 
   create_table "personas", force: :cascade do |t|
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 2018_11_04_000249) do
     t.boolean "alive", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "puntos", default: 0
   end
 
 end
