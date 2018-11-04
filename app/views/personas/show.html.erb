@@ -1,19 +1,38 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @persona.name %>
-</p>
+<h1>
+  Información
+</h1>
 
-<p>
-  <strong>Email:</strong>
-  <%= @persona.email %>
-</p>
+<div class="row">
+  <div class="col-lg-2">
+    <strong>Nombre</strong>
+  </div>
+  <div class="col">
+    <%= @persona.name %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-2">
+    <strong>Email</strong>
+  </div>
+  <div class="col">
+    <%= @persona.email %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-2">
+    <strong>Estado</strong>
+  </div>
+  <div class="col">
+    <%= @persona.alive ? 'Viva(o)' : 'Muerta(o)' %>
+  </div>
+</div>
 
-<p>
-  <strong>Alive:</strong>
-  <%= @persona.alive %>
-</p>
-
-<%= link_to 'Edit', edit_persona_path(@persona) %> |
-<%= link_to 'Back', personas_path %>
+<div class="row mt-3">
+  <div class="col">
+    <%= link_to 'Volver', personas_path, :class=>"btn btn-outline-secondary" %>
+    <%= link_to 'Editar', edit_persona_path(@persona), :class=>"btn btn-outline-primary" %>
+    <%= link_to "Eliminar #{@persona.name}", @persona, method: :delete, data: { confirm: 'Esta acción no se puede deshacer!'}, :class=>"btn btn-outline-danger" %>
+  </div>
+</div>

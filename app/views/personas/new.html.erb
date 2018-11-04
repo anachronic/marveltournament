@@ -1,5 +1,11 @@
-<h1>New Persona</h1>
+<h1>
+  Agregar Peleador
+</h1>
 
-<%= render 'form', persona: @persona %>
+<%= bootstrap_form_for(@persona) do |f| %>
+  <%= f.text_field :name, label: "Nombre" %>
+  <%= f.email_field :email %>
+  <%= link_to 'Volver', personas_path, :class=>"btn btn-outline-secondary" %>
+  <%= f.submit "Agregar peleador", :class=>"btn btn-outline-primary" %>
+<% end %>
 
-<%= link_to 'Back', personas_path %>

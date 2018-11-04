@@ -1,6 +1,8 @@
-<h1>Editing Persona</h1>
+<h1>Editar a <%= @persona.name %></h1>
 
-<%= render 'form', persona: @persona %>
-
-<%= link_to 'Show', @persona %> |
-<%= link_to 'Back', personas_path %>
+<%= bootstrap_form_for(@persona) do |f| %>
+  <%= f.text_field :name, label: "Nombre" %>
+  <%= f.email_field :email %>
+  <%= link_to 'Volver', personas_path, :class=>"btn btn-outline-secondary" %>
+  <%= f.submit "Guardar", :class=>"btn btn-outline-primary" %>
+<% end %>

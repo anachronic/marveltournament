@@ -43,3 +43,14 @@ Necesitamos jobs en background para esto (uf!).
 ## Consumir servicios de MARVEL
 
 Usaremos faraday
+
+## Gemas relevantes
+
+El proyecto utiliza algunas gemas que pueden necesitar que se lea su
+documentación
+
+1. `faraday` para requests a Marvel
+2. `bootstrap_form` para el rendering de forms y modelos
+3. `pry-rails` para usar `pry` en vez de `irb` en `rails console`
+4. `byebug` para debugging
+5. `dotenv-rails` para no revelar claves públicas y privadas
