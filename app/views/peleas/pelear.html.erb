@@ -3,7 +3,7 @@
 <% gana_heroe = @registro.gana_heroe %>
 <div class="alert <%= @registro.gana_heroe ? 'alert-warning' : 'alert-success' %>" role="alert">
   <% if gana_heroe %>
-    Vaya! parece que <%= @peleador.name %> ha perdido! :(
+    Vaya! parece que <%= @peleador.name %> ha perdido contra <%= @heroe["name"] %> :(
   <% else %>
     Bien hecho, <%= @peleador.name %>!, le has ganado a <%= @heroe["name"] %>!
   <% end %>

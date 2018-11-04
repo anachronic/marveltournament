@@ -15,6 +15,7 @@ class PeleasService
       registro = Pelea.new
       registro.persona_id = @@peleador.id
       registro.heroe_id = heroe["id"]
+      registro.nombre_heroe = heroe["name"]
       registro.gana_heroe = gana_heroe
 
       if registro.save
