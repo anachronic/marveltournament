@@ -28,3 +28,6 @@
 
 # Ignorar overrides locales de dotenv
 /.env.development.local
+
+# Ignorar tmuxinator
+/.tmuxinator.yml
