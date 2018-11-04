@@ -4,7 +4,24 @@
     <%= link_to "Hacer una pelea", peleas_pelear_path, :class=>"btn btn-outline-primary" %>
   </div>
 </h1>
-<ul>
-<% @peleas.each do |pelea| %>
-  <li><%= pelea[0] %> contra <%= pelea[1] %>: Ganador <%= pelea[2] %></li>
-<% end %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Peleadores</th>
+      <th>Ganador</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @peleas.each do |pelea| %>
+      <tr>
+        <td>
+          <%= pelea.persona.name %> contra <%= pelea.nombre_heroe %>
+        </td>
+        <td class="<%= pelea.gana_heroe ? 'table-danger' : 'table-success' %>">
+          <%= pelea.gana_heroe ? pelea.nombre_heroe : pelea.persona.name %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -8,6 +8,6 @@ class PeleasController < ApplicationController
   end
 
   def index
-    @peleas = Pelea.order(created_at: :desc).take(10)
+    @peleas = Pelea.includes(:persona).order(created_at: :desc).take(10)
   end
 end

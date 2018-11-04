@@ -23,15 +23,18 @@ class PeleasService
 
         if gana_heroe
           @@peleador.alive = false
-
-          # No nos olvidemos de resetear el peleador
-          reset_peleador
         else
           @@peleador.puntos += 1
         end
 
         @@peleador.save
-        {:persona => @@peleador, :heroe => heroe, :registro => registro}
+        # Ahora que guardamos al peleador, hay que retornar el que peleó pero
+        # debemos cambiar la variable de clase si gana el héroe
+        persona = @@peleador
+
+        reset_peleador if gana_heroe
+
+        {:persona => persona, :heroe => heroe, :registro => registro}
       else
         false
       end
