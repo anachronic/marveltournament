@@ -10,6 +10,8 @@ class PersonasController < ApplicationController
   # GET /personas/1
   # GET /personas/1.json
   def show
+    # Rails autodefine @persona aquí
+    @peleas = @persona.peleas.order(created_at: :desc)
   end
 
   # GET /personas/new

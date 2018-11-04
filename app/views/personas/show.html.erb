@@ -29,6 +29,32 @@
   </div>
 </div>
 
+<% unless @peleas.empty? %>
+  <div class="mt-5">
+    <h4>Últimas peleas de <%= @persona.name %></h4>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Contrincante</th>
+          <th>Ganador</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @peleas.each do |pelea| %>
+          <tr>
+            <td>
+              <%= pelea.nombre_heroe %>
+            </td>
+            <td class="<%= pelea.gana_heroe ? 'table-danger' : 'table-success' %>">
+              <%= pelea.gana_heroe ? pelea.nombre_heroe : pelea.persona.name %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>
+
 <div class="row mt-3">
   <div class="col">
     <%= link_to 'Volver', personas_path, :class=>"btn btn-outline-secondary" %>
