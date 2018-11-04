@@ -1,5 +1,12 @@
 # Notas de desarrollo
 
+## Peleas
+
+Crearemos un servicio de Rails que genere peleas para mantener la lógica de
+controllers (que generarán una pelea cuando el usuario lo pide) y los jobs (que
+generarán peleas cada 10 mins y resetearán el ranking) lo más legible que se
+pueda.
+
 ## API de Marvel
 
 La API de marvel nos entrega info por límites, lo que puede parecer horrible al
@@ -38,11 +45,6 @@ Necesitamos jobs en background para esto (uf!).
 
   1. Cada 10 minutos una pelea sí o sí
   2. Todos los días a las 0:00 resetear el ranking y estatus de los jugadores
-
-
-## Consumir servicios de MARVEL
-
-Usaremos faraday
 
 ## Gemas relevantes
 
