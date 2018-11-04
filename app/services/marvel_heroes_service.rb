@@ -29,6 +29,25 @@ class MarvelHeroesService
       JSON.parse(response.body)
     end
 
+    def get_random_heroe
+      path = "/v1/public/characters"
+
+      conn = get_connection
+      params = get_params
+      response = conn.get(path, params)
+
+      # Tomamos uno de los tantos al azar
+      heroes_total = JSON.parse(response.body)["data"]["total"].to_i
+      elegido = rand(heroes_total)
+
+      # Hacemos un request con offset = elegido
+      params = get_params
+      params[:offset] = elegido
+      response = conn.get(path, params)
+
+      JSON.parse(response.body)["data"]["results"].first
+    end
+
     private
 
     def get_connection
