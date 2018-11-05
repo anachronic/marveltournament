@@ -22,6 +22,7 @@ module Marveltournament
     # Haremos un job para encolar peleas
     config.after_initialize do
       if defined?(Rails::Server)
+        ResetRankingJob.set(wait_until: Date.today.midnight).perform_later
         PeleasPeriodicasJob.set(wait: config.intervalo_peleas.minutes).perform_later
       end
     end
