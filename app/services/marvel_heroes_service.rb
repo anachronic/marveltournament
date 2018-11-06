@@ -45,7 +45,15 @@ class MarvelHeroesService
       params[:offset] = elegido
       response = conn.get(path, params)
 
-      JSON.parse(response.body)["data"]["results"].first
+      results = JSON.parse(response.body)["data"]["results"]
+      index = 0
+      results.each do |heroe|
+        return results[index] unless PeleasService.heroe_ha_peleado(heroe["id"])
+        index = index + 1
+      end
+
+      # URGH! Todos los heroes pelearon? repetir..
+      get_random_heroe
     end
 
     private

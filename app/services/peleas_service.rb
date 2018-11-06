@@ -1,5 +1,9 @@
+# coding: utf-8
 class PeleasService
   @@peleador = nil
+
+  # Contiene una lista con ids de heroes que ya pelearon hoy
+  @@heroes_con_peleas = []
 
   class << self
     def pelear
@@ -29,6 +33,7 @@ class PeleasService
         end
 
         @@peleador.save
+        @@heroes_con_peleas.append(heroe["id"])
         # Ahora que guardamos al peleador, hay que retornar el que peleó pero
         # debemos cambiar la variable de clase si gana el héroe
         persona = @@peleador
@@ -41,9 +46,14 @@ class PeleasService
       end
     end
 
+    def heroe_ha_peleado(id)
+      @@heroes_con_peleas.include?(id)
+    end
+
     def reset_ranking
       Pelea.destroy_all
       Persona.update_all("puntos = 0, alive = 'true'")
+      @@heroes_con_peleas = []
 
       # También reseteamos el peleador
       reset_peleador
@@ -61,7 +71,7 @@ class PeleasService
 
     def existen_vivos
       vivos = Persona.where(alive: true)
-      
+
       vivos.count > 0
     end
   end
