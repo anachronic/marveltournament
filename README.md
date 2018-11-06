@@ -1,13 +1,71 @@
 # README
 
 Este README contiene instrucciones para correr esta aplicación sobre
-un sistema UNIX. Lo testearemos con Arch Linux y Ubuntu.
+un sistema UNIX. Lo testearemos con Ubuntu 18.04 LTS. Esta aplicación
+utiliza Ruby on Rails 5.2.1 y Ruby 2.5.1, Redis, Sidekiq y PostgreSQL
+(incluso en desarrollo).
 
 ## Prerequisitos
 
-Instale Ruby, Rubygems, y PostgreSQL desde su distribución. Usaremos
-PostgreSQL para desarrollo en vez de SQLite para evitarnos dolores de
-cabeza de configuración desde el principio
+### Ruby
+
+Una forma decente de instalar Ruby en una máquina es con
+[RVM](https://github.com/rvm/ubuntu_rvm). Para ello siga las
+instrucciones en dicha página para instalar rvm
+
+Una vez instalado el ppa y rvm, hay que agregarse al grupo `rvm`:
+
+``` bash
+rvm group add rvm "$USER"
+```
+
+Después de esto salga de su usuario actual (Log Out) y vuelva a
+iniciar sesión. Este paso es **muy importante**
+
+### Rails
+
+``` bash
+gem install rails
+```
+
+### Instalar dependencias en el OS
+
+Necesitaremos PostgreSQL, git, Node.js y Redis
+
+``` bash
+sudo apt install postgresql git libpq-dev npm nodejs redis
+```
+
+### Configurar Postgres
+
+Primero cambie la contraseña del usuario `postgres`:
+
+``` bash
+sudo passwd postgres
+```
+
+Luego cree un usuario (en este ejemplo usaremos `rails_dev`):
+
+``` bash
+sudo -u postgres createuser --interative
+```
+
+Sólo es importante que el usuario creado tenga la posibilidad de crear
+nuevas bases de datos
+
+Luego cree la base de datos, ejecute estos comandos en sucesión
+
+``` bash
+su - postgres
+psql
+set role rails_dev;
+\password rails_dev;
+create database marveltournament_development;
+```
+
+El primer comando cambia el usuario a `postgres`, el segundo inicia la
+shell de PostgreSQL, el tercero cambia el rol a `rails_dev`, el cuarto
+cambia la contraseña (recuérdela!) y finalmente se crea la base de datos
 
 ## Clonar este repo
 
@@ -41,52 +99,27 @@ MARVEL_PUBLIC_KEY=tullavepublica
 Si no tiene sus llaves públicas y privadas, obténgalas en [Marvel
 Developer](https://developer.marvel.com/).
 
+## Configure la base de datos
+
+Edite el archivo `config/database.yml` y sobre el bloque `development`
+escriba las credenciales.
+
+``` yaml
+database: marveltournament_development
+username: rails_dev
+password: 1234
+host: localhost
+port: 5432
+```
+
+Es importante que `username` y `password` coincidan con las
+credenciales del usuario de postgres creado anteriormente
+
 ## Migre la base de datos
 
 ``` bash
 $ rails db:migrate
 ```
-
-## Instalar Redis
-
-Este proyecto ocupa Redis. Para instalarlo:
-
-### Arch Linux
-
-``` bash
-# pacman -S redis
-```
-
-Arch Linux no inicia el servicio de redis automáticamente, así que
-mándele señal de start con
-
-``` bash
-# systemctl start redis.service
-```
-
-Si evitar el tedio de tener que correr esto cada vez que reinicia su
-máquina, habilite el servicio perpetuamente
-
-``` bash
-# systemctl enable redis.service
-```
-
-### Ubuntu
-
-``` bash
-# apt install redis
-```
-
-Ubuntu parte el servicio y lo habilita automáticamente, nada más que
-hacer ahí
-
-
-### Otras distros
-
-Visite [Redis](https://redis.io/download) y siga sus
-instrucciones. Probablemente en MacOS esté disponible vía
-[brew](https://brew.sh/) y en Fedora via `dnf`.
-
 
 ## Correr el server
 
