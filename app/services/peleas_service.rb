@@ -42,7 +42,7 @@ class PeleasService
 
     def reset_ranking
       Pelea.destroy_all
-      Persona.update_all("puntos: 0, alive = 'true'")
+      Persona.update_all("puntos = 0, alive = 'true'")
 
       # También reseteamos el peleador
       reset_peleador

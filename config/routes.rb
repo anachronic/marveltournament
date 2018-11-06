@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   # Ranking
   get 'ranking', to: "ranking#index"
+  post 'ranking/reset', to: "ranking#reset", as: :reset_ranking
 
   # Index (dashboard)
   root controller: :index, action: :hello
