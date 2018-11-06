@@ -1,0 +1,11 @@
+schedule_periodic_fights:
+  cron: "*/1 * * * *"
+  class: "PeleasPeriodicasJob"
+  queue: default
+  active_job: true
+
+schedule_ranking_reset:
+  cron: "0 0 * * *"
+  class: "ResetRankingJob"
+  queue: default
+  active_job: true
