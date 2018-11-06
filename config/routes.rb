@@ -14,6 +14,9 @@ Rails.application.routes.draw do
   get 'ranking', to: "ranking#index"
   post 'ranking/reset', to: "ranking#reset", as: :reset_ranking
 
+  # Acerca
+  get 'acerca', to: "acerca#index", as: :acerca
+
   # Index (dashboard)
   root controller: :index, action: :hello
 end

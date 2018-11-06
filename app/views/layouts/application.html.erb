@@ -33,12 +33,12 @@
               <%= link_to "Personas", {controller: "personas", action: "index"}, :class=>"nav-link" %>
             </li>
           </ul>
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-          </form>
+          <ul class="navbar-nav">
+            <li class="navbar-item">
+              <%= link_to "Acerca", acerca_path, :class=>"nav-link" %>
+            </li>
+          </ul>
         </div>
-
       </nav>
       <div class="content pt-3">
         <%= yield %>
