@@ -4,6 +4,7 @@ class PeleasService
   class << self
     def pelear
       reset_peleador if @@peleador.nil?
+      return unless existen_vivos
 
       heroe = MarvelHeroesService.get_random_heroe
 
@@ -56,6 +57,12 @@ class PeleasService
       return false if vivos.count == 0
       total_personas = vivos.count
       @@peleador = vivos.offset(rand(total_personas)).first
+    end
+
+    def existen_vivos
+      vivos = Persona.where(alive: true)
+      
+      vivos.count > 0
     end
   end
 end
