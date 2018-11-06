@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :personas
+  post 'personas/:id/revivir', to: "personas#revivir", as: :personas_revivir
 
   # Heroes
   get 'heroes', to: "heroes#index", as: :heroes_index

@@ -63,6 +63,17 @@ class PersonasController < ApplicationController
     end
   end
 
+  def revivir
+    id = params[:id]
+    persona = Persona.find(id)
+    persona.alive = true
+    if persona.save
+      redirect_to persona_path(persona.id), {notice: "#{persona.name} revivió!"}
+    else
+      redirect_to persona_path(persona.id), {notice: "No ha sido posible revivir a #{persona.name} :("}
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_persona

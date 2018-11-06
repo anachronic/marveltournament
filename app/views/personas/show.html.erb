@@ -1,7 +1,14 @@
-<p id="notice"><%= notice %></p>
+<% if notice %>
+  <div id="notice" class="alert alert-info"><%= notice %></div>
+<% end %>
 
 <h1>
   Información
+  <% unless @persona.alive %>
+    <div class="float-right">
+      <%= button_to "Revivir", personas_revivir_path(@persona.id), :class=>"btn btn-outline-primary" %>
+    </div>
+  <% end %>
 </h1>
 
 <div class="row">
