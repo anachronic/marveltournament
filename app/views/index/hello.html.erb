@@ -1,4 +1,51 @@
-<h1>Torneo Marvel Héroes</h1>
-<div class="float-right">
-  <%= link_to "Pelear ahora!", {controller: "peleas", action: "pelear"}, :class =>"btn btn-primary" %>
+<div class="jumbotron">
+  <h1 class="display-4">Torneo de Héroes de Marvel</h1>
+  <p class="lead">
+    Un sitio donde persona comunes y corrientes pelean contra héroes de marvel y aculuman puntos diarios
+  </p>
+
+  <hr class="my-4">
+  <p>Cualquiera puede unirse, ¡Únete ahora!</p>
+  <%= link_to "Unirse ahora", new_persona_path, :class=>"btn btn-primary btn-lg" %>
+</div>
+
+<div class="row">
+  <div class="col-lg-6">
+    <h4>Últimas peleas</h4>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Oponentes</th>
+          <th>Ganador</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @peleas.each do |pelea| %>
+          <tr>
+            <td><%= pelea.nombre_heroe %> contra <%= pelea.persona.name %></td>
+            <td><%= pelea.gana_heroe ? pelea.nombre_heroe : pelea.persona.name %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-lg-6">
+    <h4>Peleadores con más puntos</h4>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Peleador</th>
+          <th>Puntos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @personas.each do |persona| %>
+          <tr>
+            <td><%= persona.name %></td>
+            <td><%= persona.puntos %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>
