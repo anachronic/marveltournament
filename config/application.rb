@@ -1,3 +1,4 @@
+# coding: utf-8
 require_relative 'boot'
 
 require 'rails/all'
@@ -19,5 +20,10 @@ module Marveltournament
     # Con sidekiq y sidekiq-cron haremos las peleas y resets de
     # ranking
     config.active_job.queue_adapter = :sidekiq
+    redis_url = 'redis://localhost:6379/0'
+
+    # No usar localhost en producción
+    redis_url = ENV['REDIS_URL'] if Rails.env.production?
+    config.redis_url = redis_url
   end
 end
